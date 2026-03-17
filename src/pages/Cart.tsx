@@ -110,7 +110,7 @@ const Cart = () => {
       <div className="bg-card rounded-lg p-4 border border-border mb-6">
         <div className="flex justify-between font-body text-sm mb-2">
           <span className="text-muted-foreground">Subtotal</span>
-          <span>${total.toFixed(2)}</span>
+          <span>₹{total.toFixed(2)}</span>
         </div>
         <div className="flex justify-between font-body text-sm mb-2">
           <span className="text-muted-foreground">Delivery Fee</span>
