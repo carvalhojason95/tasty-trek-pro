@@ -114,7 +114,7 @@ const Cart = () => {
         </div>
         <div className="flex justify-between font-body text-sm mb-2">
           <span className="text-muted-foreground">Delivery Fee</span>
-          <span>${deliveryFee.toFixed(2)}</span>
+          <span>₹{deliveryFee.toFixed(2)}</span>
         </div>
         {discount > 0 && (
           <div className="flex justify-between font-body text-sm mb-2 text-success">
