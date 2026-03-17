@@ -12,6 +12,8 @@ export interface MenuItem {
   price: number;
   image: string;
   isPopular?: boolean;
+  isVeg?: boolean;
+  isBestSeller?: boolean;
 }
 
 export interface Restaurant {
@@ -25,6 +27,8 @@ export interface Restaurant {
   reviewCount: number;
   image: string;
   menu: MenuItem[];
+  tags?: string[];
+  isVeg?: boolean;
 }
 
 export interface PastOrder {
@@ -50,7 +54,23 @@ export interface OrderTracking {
   items: { name: string; quantity: number }[];
   total: number;
   driverName: string;
+  driverPhone: string;
+  delayReason?: string;
+  liveLocation?: { lat: number; lng: number };
 }
+
+export const cravingCategories = [
+  { id: "pizza", label: "🍕 Pizza", cuisine: "Italian" },
+  { id: "burger", label: "🍔 Burgers", cuisine: "American" },
+  { id: "healthy", label: "🥗 Healthy", cuisine: "Hawaiian" },
+  { id: "dessert", label: "🍰 Desserts", cuisine: "" },
+  { id: "indian", label: "🍛 Indian", cuisine: "Indian" },
+  { id: "sushi", label: "🍣 Sushi", cuisine: "Japanese" },
+];
+
+export const trendingSearches = [
+  "Butter Chicken", "Pizza", "Poke Bowl", "Burger", "Sushi", "Biryani"
+];
 
 export const pastOrders: PastOrder[] = [
   { id: "po1", dishName: "Chicken Pho", restaurantName: "Saigon Shack", image: foodPho, price: 14.99, restaurantId: "r1" },
@@ -63,8 +83,9 @@ export const restaurants: Restaurant[] = [
   {
     id: "r1", name: "Saigon Shack", cuisine: "Vietnamese", deliveryTime: 18, prepTime: 12,
     priceRange: "$$", rating: 4.7, reviewCount: 342, image: foodPho,
+    tags: ["Fast Delivery"],
     menu: [
-      { id: "m1", name: "Chicken Pho", description: "Rice noodles in aromatic broth with tender chicken, herbs, and lime", price: 14.99, image: foodPho, isPopular: true },
+      { id: "m1", name: "Chicken Pho", description: "Rice noodles in aromatic broth with tender chicken, herbs, and lime", price: 14.99, image: foodPho, isPopular: true, isBestSeller: true },
       { id: "m2", name: "Beef Pho", description: "Traditional beef broth with rare steak, brisket, and fresh herbs", price: 16.99, image: foodPho },
       { id: "m3", name: "Banh Mi", description: "Crispy baguette with grilled pork, pickled vegetables, and cilantro", price: 11.99, image: foodPho },
     ],
@@ -72,8 +93,9 @@ export const restaurants: Restaurant[] = [
   {
     id: "r2", name: "Burger Joint", cuisine: "American", deliveryTime: 15, prepTime: 10,
     priceRange: "$", rating: 4.5, reviewCount: 521, image: foodBurger,
+    tags: ["Fast Delivery", "Budget Friendly"],
     menu: [
-      { id: "m4", name: "Classic Cheeseburger", description: "Angus beef, cheddar, lettuce, tomato, house sauce", price: 12.49, image: foodBurger, isPopular: true },
+      { id: "m4", name: "Classic Cheeseburger", description: "Angus beef, cheddar, lettuce, tomato, house sauce", price: 12.49, image: foodBurger, isPopular: true, isBestSeller: true },
       { id: "m5", name: "Double Smash Burger", description: "Two smashed patties, American cheese, pickles, onion", price: 15.99, image: foodBurger },
       { id: "m6", name: "Chicken Burger", description: "Crispy chicken thigh, slaw, spicy mayo", price: 13.49, image: foodBurger },
     ],
@@ -81,33 +103,37 @@ export const restaurants: Restaurant[] = [
   {
     id: "r3", name: "Aloha Bowls", cuisine: "Hawaiian", deliveryTime: 22, prepTime: 8,
     priceRange: "$$", rating: 4.8, reviewCount: 189, image: foodPoke,
+    tags: ["Healthy"],
     menu: [
-      { id: "m7", name: "Salmon Poke Bowl", description: "Fresh salmon, avocado, edamame, sesame, sushi rice", price: 16.99, image: foodPoke, isPopular: true },
+      { id: "m7", name: "Salmon Poke Bowl", description: "Fresh salmon, avocado, edamame, sesame, sushi rice", price: 16.99, image: foodPoke, isPopular: true, isBestSeller: true, isVeg: false },
       { id: "m8", name: "Tuna Poke Bowl", description: "Ahi tuna, mango, cucumber, ponzu, crispy onion", price: 17.99, image: foodPoke },
     ],
   },
   {
     id: "r4", name: "Napoli Express", cuisine: "Italian", deliveryTime: 25, prepTime: 15,
     priceRange: "$$", rating: 4.6, reviewCount: 412, image: foodPizza,
+    tags: ["Top Rated"],
     menu: [
-      { id: "m9", name: "Margherita Pizza", description: "San Marzano tomatoes, fresh mozzarella, basil", price: 14.99, image: foodPizza, isPopular: true },
+      { id: "m9", name: "Margherita Pizza", description: "San Marzano tomatoes, fresh mozzarella, basil", price: 14.99, image: foodPizza, isPopular: true, isBestSeller: true, isVeg: true },
       { id: "m10", name: "Pepperoni Pizza", description: "Spicy pepperoni, mozzarella, oregano", price: 16.99, image: foodPizza },
     ],
   },
   {
     id: "r5", name: "Spice Route", cuisine: "Indian", deliveryTime: 30, prepTime: 20,
     priceRange: "$$", rating: 4.9, reviewCount: 278, image: foodCurry,
+    tags: ["Top Rated", "Best Seller"],
     menu: [
-      { id: "m11", name: "Butter Chicken", description: "Tender chicken in rich tomato-cream sauce with naan", price: 15.49, image: foodCurry, isPopular: true },
+      { id: "m11", name: "Butter Chicken", description: "Tender chicken in rich tomato-cream sauce with naan", price: 15.49, image: foodCurry, isPopular: true, isBestSeller: true },
       { id: "m12", name: "Lamb Biryani", description: "Fragrant basmati rice layered with spiced lamb", price: 18.99, image: foodCurry },
-      { id: "m13", name: "Palak Paneer", description: "Cottage cheese cubes in creamy spinach gravy", price: 13.99, image: foodCurry },
+      { id: "m13", name: "Palak Paneer", description: "Cottage cheese cubes in creamy spinach gravy", price: 13.99, image: foodCurry, isVeg: true },
     ],
   },
   {
     id: "r6", name: "Sakura Sushi", cuisine: "Japanese", deliveryTime: 20, prepTime: 15,
     priceRange: "$$$", rating: 4.8, reviewCount: 156, image: foodSushi,
+    tags: ["Premium"],
     menu: [
-      { id: "m14", name: "Salmon Nigiri Set", description: "6 pieces of fresh salmon nigiri with wasabi and ginger", price: 19.99, image: foodSushi, isPopular: true },
+      { id: "m14", name: "Salmon Nigiri Set", description: "6 pieces of fresh salmon nigiri with wasabi and ginger", price: 19.99, image: foodSushi, isPopular: true, isBestSeller: true },
       { id: "m15", name: "Dragon Roll", description: "Shrimp tempura, avocado, eel sauce, tobiko", price: 16.99, image: foodSushi },
     ],
   },
@@ -124,4 +150,7 @@ export const activeOrder: OrderTracking = {
   ],
   total: 26.98,
   driverName: "Alex M.",
+  driverPhone: "+1 (555) 123-4567",
+  delayReason: undefined,
+  liveLocation: { lat: 40.7128, lng: -74.006 },
 };

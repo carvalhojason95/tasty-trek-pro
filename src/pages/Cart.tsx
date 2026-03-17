@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Minus, Plus, Trash2 } from "lucide-react";
+import { ArrowLeft, Minus, Plus, Trash2, Clock, Tag, Leaf as EcoLeaf } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import DeliveryTimeBadge from "@/components/DeliveryTimeBadge";
 
 const Cart = () => {
   const navigate = useNavigate();
   const { items, updateQuantity, removeItem, total, clearCart } = useCart();
+  const [ecoMode, setEcoMode] = useState(false);
 
   const deliveryFee = 2.99;
   const discount = total > 30 ? 5 : 0;
-  const grandTotal = total + deliveryFee - discount;
+  const ecoDiscount = ecoMode ? 0.50 : 0;
+  const grandTotal = total + deliveryFee - discount - ecoDiscount;
+  const estimatedDelivery = 25;
 
   const handlePlaceOrder = () => {
     clearCart();
@@ -42,7 +47,18 @@ const Cart = () => {
         <h1 className="font-heading text-lg font-bold">Your Cart</h1>
       </div>
 
-      <div className="flex flex-col gap-4 mb-8">
+      {/* Delivery Time Preview */}
+      <div className="bg-accent/10 border border-accent/20 rounded-lg p-3 mb-5 flex items-center gap-3">
+        <Clock size={18} className="text-accent" />
+        <div>
+          <p className="font-heading text-xs font-bold text-foreground">
+            Estimated delivery: <DeliveryTimeBadge minutes={estimatedDelivery} showIcon={false} />
+          </p>
+          <p className="font-body text-[10px] text-muted-foreground">Based on current traffic conditions</p>
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-4 mb-6">
         {items.map((item) => (
           <div key={item.id} className="flex items-center gap-3">
             <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
@@ -69,6 +85,27 @@ const Cart = () => {
         ))}
       </div>
 
+      {/* Eco Mode Toggle */}
+      <button
+        onClick={() => setEcoMode(!ecoMode)}
+        className={`w-full flex items-center justify-between p-3 rounded-lg border mb-6 transition-colors ${
+          ecoMode ? "bg-success/10 border-success/30" : "bg-card border-border"
+        }`}
+      >
+        <div className="flex items-center gap-2">
+          <EcoLeaf size={16} className={ecoMode ? "text-success" : "text-muted-foreground"} />
+          <div className="text-left">
+            <p className="font-heading text-xs font-bold">Eco-friendly packaging</p>
+            <p className="font-body text-[10px] text-muted-foreground">No cutlery, minimal packaging – save $0.50</p>
+          </div>
+        </div>
+        <div className={`w-10 h-6 rounded-full transition-colors flex items-center ${
+          ecoMode ? "bg-success justify-end" : "bg-border justify-start"
+        }`}>
+          <div className="w-4 h-4 rounded-full bg-card mx-1 shadow-sm" />
+        </div>
+      </button>
+
       {/* Summary */}
       <div className="bg-card rounded-lg p-4 border border-border mb-6">
         <div className="flex justify-between font-body text-sm mb-2">
@@ -80,9 +117,15 @@ const Cart = () => {
           <span>${deliveryFee.toFixed(2)}</span>
         </div>
         {discount > 0 && (
-          <div className="flex justify-between font-body text-sm mb-2 text-accent">
-            <span>Discount</span>
+          <div className="flex justify-between font-body text-sm mb-2 text-success">
+            <span className="flex items-center gap-1"><Tag size={12} /> Discount</span>
             <span>-${discount.toFixed(2)}</span>
+          </div>
+        )}
+        {ecoDiscount > 0 && (
+          <div className="flex justify-between font-body text-sm mb-2 text-success">
+            <span className="flex items-center gap-1"><EcoLeaf size={12} /> Eco savings</span>
+            <span>-${ecoDiscount.toFixed(2)}</span>
           </div>
         )}
         <div className="border-t border-border my-2" />
