@@ -125,7 +125,7 @@ const Cart = () => {
         {ecoDiscount > 0 && (
           <div className="flex justify-between font-body text-sm mb-2 text-success">
             <span className="flex items-center gap-1"><EcoLeaf size={12} /> Eco savings</span>
-            <span>-${ecoDiscount.toFixed(2)}</span>
+            <span>-₹{ecoDiscount.toFixed(2)}</span>
           </div>
         )}
         <div className="border-t border-border my-2" />
