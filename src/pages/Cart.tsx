@@ -96,7 +96,7 @@ const Cart = () => {
           <EcoLeaf size={16} className={ecoMode ? "text-success" : "text-muted-foreground"} />
           <div className="text-left">
             <p className="font-heading text-xs font-bold">Eco-friendly packaging</p>
-            <p className="font-body text-[10px] text-muted-foreground">No cutlery, minimal packaging – save $0.50</p>
+            <p className="font-body text-[10px] text-muted-foreground">No cutlery, minimal packaging – save ₹0.50</p>
           </div>
         </div>
         <div className={`w-10 h-6 rounded-full transition-colors flex items-center ${
