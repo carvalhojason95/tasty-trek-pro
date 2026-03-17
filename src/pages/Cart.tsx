@@ -67,7 +67,7 @@ const Cart = () => {
             <div className="flex-1 min-w-0">
               <p className="font-heading text-sm font-bold truncate">{item.name}</p>
               <p className="font-body text-[10px] text-muted-foreground">{item.restaurantName}</p>
-              <p className="font-heading text-sm mt-1">${(item.price * item.quantity).toFixed(2)}</p>
+              <p className="font-heading text-sm mt-1">₹{(item.price * item.quantity).toFixed(2)}</p>
             </div>
             <div className="flex items-center gap-2">
               <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="p-1 rounded bg-secondary">
