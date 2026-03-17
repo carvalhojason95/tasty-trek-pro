@@ -140,7 +140,7 @@ const Cart = () => {
         onClick={handlePlaceOrder}
         className="fixed bottom-20 left-1/2 -translate-x-1/2 max-w-md w-[calc(100%-2rem)] bg-accent text-accent-foreground font-heading text-sm py-3.5 rounded-lg shadow-lg z-40"
       >
-        Place Order · ${grandTotal.toFixed(2)}
+        Place Order · ₹{grandTotal.toFixed(2)}
       </button>
     </div>
   );

@@ -135,7 +135,7 @@ const OrderTracking = () => {
         ))}
         <div className="border-t border-border mt-2 pt-2 flex justify-between font-heading text-sm font-bold">
           <span>Total</span>
-          <span>${order.total.toFixed(2)}</span>
+          <span>₹{order.total.toFixed(2)}</span>
         </div>
       </div>
     </div>
