@@ -30,6 +30,12 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
     --border: 40 10% 90%;
     --input: 40 10% 90%;
     --ring: 19 100% 50%;
@@ -76,4 +82,15 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Delivery time color indicators */
+.delivery-fast {
+  color: hsl(var(--success));
+}
+.delivery-moderate {
+  color: hsl(var(--warning));
+}
+.delivery-slow {
+  color: hsl(var(--destructive));
 }
