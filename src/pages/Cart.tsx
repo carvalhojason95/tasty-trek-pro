@@ -67,7 +67,7 @@ const Cart = () => {
             <div className="flex-1 min-w-0">
               <p className="font-heading text-sm font-bold truncate">{item.name}</p>
               <p className="font-body text-[10px] text-muted-foreground">{item.restaurantName}</p>
-              <p className="font-heading text-sm mt-1">${(item.price * item.quantity).toFixed(2)}</p>
+              <p className="font-heading text-sm mt-1">₹{(item.price * item.quantity).toFixed(2)}</p>
             </div>
             <div className="flex items-center gap-2">
               <button onClick={() => updateQuantity(item.id, item.quantity - 1)} className="p-1 rounded bg-secondary">
@@ -96,7 +96,7 @@ const Cart = () => {
           <EcoLeaf size={16} className={ecoMode ? "text-success" : "text-muted-foreground"} />
           <div className="text-left">
             <p className="font-heading text-xs font-bold">Eco-friendly packaging</p>
-            <p className="font-body text-[10px] text-muted-foreground">No cutlery, minimal packaging – save $0.50</p>
+            <p className="font-body text-[10px] text-muted-foreground">No cutlery, minimal packaging – save ₹0.50</p>
           </div>
         </div>
         <div className={`w-10 h-6 rounded-full transition-colors flex items-center ${
@@ -110,28 +110,28 @@ const Cart = () => {
       <div className="bg-card rounded-lg p-4 border border-border mb-6">
         <div className="flex justify-between font-body text-sm mb-2">
           <span className="text-muted-foreground">Subtotal</span>
-          <span>${total.toFixed(2)}</span>
+          <span>₹{total.toFixed(2)}</span>
         </div>
         <div className="flex justify-between font-body text-sm mb-2">
           <span className="text-muted-foreground">Delivery Fee</span>
-          <span>${deliveryFee.toFixed(2)}</span>
+          <span>₹{deliveryFee.toFixed(2)}</span>
         </div>
         {discount > 0 && (
           <div className="flex justify-between font-body text-sm mb-2 text-success">
             <span className="flex items-center gap-1"><Tag size={12} /> Discount</span>
-            <span>-${discount.toFixed(2)}</span>
+            <span>-₹{discount.toFixed(2)}</span>
           </div>
         )}
         {ecoDiscount > 0 && (
           <div className="flex justify-between font-body text-sm mb-2 text-success">
             <span className="flex items-center gap-1"><EcoLeaf size={12} /> Eco savings</span>
-            <span>-${ecoDiscount.toFixed(2)}</span>
+            <span>-₹{ecoDiscount.toFixed(2)}</span>
           </div>
         )}
         <div className="border-t border-border my-2" />
         <div className="flex justify-between font-heading text-base font-bold">
           <span>Total</span>
-          <span>${grandTotal.toFixed(2)}</span>
+          <span>₹{grandTotal.toFixed(2)}</span>
         </div>
       </div>
 
@@ -140,7 +140,7 @@ const Cart = () => {
         onClick={handlePlaceOrder}
         className="fixed bottom-20 left-1/2 -translate-x-1/2 max-w-md w-[calc(100%-2rem)] bg-accent text-accent-foreground font-heading text-sm py-3.5 rounded-lg shadow-lg z-40"
       >
-        Place Order · ${grandTotal.toFixed(2)}
+        Place Order · ₹{grandTotal.toFixed(2)}
       </button>
     </div>
   );

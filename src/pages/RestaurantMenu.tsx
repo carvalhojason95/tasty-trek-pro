@@ -131,7 +131,7 @@ function MenuItemCard({ item, restaurant, addItem, showBestSeller = false }: {
         </div>
         <p className="font-body text-[11px] text-muted-foreground line-clamp-2 mt-0.5">{item.description}</p>
         <div className="flex items-center justify-between mt-2">
-          <span className="font-heading text-sm font-bold">${item.price.toFixed(2)}</span>
+          <span className="font-heading text-sm font-bold">₹{item.price.toFixed(2)}</span>
           <button
             onClick={() =>
               addItem({
