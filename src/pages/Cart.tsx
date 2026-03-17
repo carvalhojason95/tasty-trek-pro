@@ -131,7 +131,7 @@ const Cart = () => {
         <div className="border-t border-border my-2" />
         <div className="flex justify-between font-heading text-base font-bold">
           <span>Total</span>
-          <span>${grandTotal.toFixed(2)}</span>
+          <span>₹{grandTotal.toFixed(2)}</span>
         </div>
       </div>
 
