@@ -17,7 +17,7 @@ const CartFloatingButton = () => {
         <ShoppingBag size={18} />
         <span className="font-heading text-sm">{itemCount} item{itemCount > 1 ? "s" : ""}</span>
       </div>
-      <span className="font-heading text-sm">₹{total.toFixed(2)}</span>
+      <span className="font-heading text-sm">${total.toFixed(2)}</span>
     </button>
   );
 };

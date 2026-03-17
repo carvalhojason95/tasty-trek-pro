@@ -79,7 +79,7 @@ const Profile = () => {
               <p className="font-body text-[10px] text-muted-foreground">{order.restaurantName}</p>
             </div>
             <div className="text-right">
-              <span className="font-heading text-xs font-bold">₹{order.price.toFixed(2)}</span>
+              <span className="font-heading text-xs font-bold">${order.price.toFixed(2)}</span>
               <button className="block font-body text-[10px] text-accent font-bold mt-0.5">Reorder</button>
             </div>
           </div>
