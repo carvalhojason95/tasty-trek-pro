@@ -119,7 +119,7 @@ const Cart = () => {
         {discount > 0 && (
           <div className="flex justify-between font-body text-sm mb-2 text-success">
             <span className="flex items-center gap-1"><Tag size={12} /> Discount</span>
-            <span>-${discount.toFixed(2)}</span>
+            <span>-₹{discount.toFixed(2)}</span>
           </div>
         )}
         {ecoDiscount > 0 && (
