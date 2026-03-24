@@ -12,6 +12,12 @@ import Cart from "./pages/Cart";
 import OrderTracking from "./pages/OrderTracking";
 import Profile from "./pages/Profile";
 import Support from "./pages/Support";
+import OrderHistory from "./pages/OrderHistory";
+import Favorites from "./pages/Favorites";
+import PaymentMethods from "./pages/PaymentMethods";
+import ScheduledOrders from "./pages/ScheduledOrders";
+import GroupOrders from "./pages/GroupOrders";
+import EcoPreferences from "./pages/EcoPreferences";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -32,6 +38,12 @@ const App = () => (
               <Route path="/tracking" element={<OrderTracking />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/support" element={<Support />} />
+              <Route path="/order-history" element={<OrderHistory />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/payment-methods" element={<PaymentMethods />} />
+              <Route path="/scheduled-orders" element={<ScheduledOrders />} />
+              <Route path="/group-orders" element={<GroupOrders />} />
+              <Route path="/eco-preferences" element={<EcoPreferences />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </MobileLayout>
